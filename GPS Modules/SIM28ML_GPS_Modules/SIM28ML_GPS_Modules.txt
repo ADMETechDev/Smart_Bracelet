@@ -1,0 +1,13 @@
+**Explanation**
+
+SoftwareSerial: 
+ - Used to communicate with the SIM28ML module using pins 3 (TX) and 4 (RX) for serial communication.
+NMEA Sentences: 
+ - The SIM28ML GPS module outputs GPS data in NMEA format. The code captures and processes $GPGGA sentences, which contain useful data such          as latitude, longitude, and fix quality.
+Parsing GPGGA Sentence: 
+ - The code extracts fields from the $GPGGA sentence using the positions of commas to split the string. 
+
+Important fields include:
+ - Time (UTC time of position fix)
+ - Latitude and Longitude (position)
+ - Fix Quality (type of GPS fix)

@@ -1,0 +1,14 @@
+**Explanation**
+
+SoftwareSerial: Used to communicate with the Quectel BG96 module using software serial. Pins 7 (RX) and 8 (TX) are set for communication with the module.
+
+**Basic AT Commands**
+
+AT: Checks if the module is responding.
+AT+CPIN?: Checks if the SIM card is inserted and ready.
+AT+CMGF=1: Puts the module in SMS text mode.
+AT+CREG?: Checks the network registration status.
+AT+CMGS: Sends an SMS to the specified number.
+
+**Sending an SMS** 
+ - The sendSMS() function handles sending an SMS, including the phone number and message.

@@ -1,0 +1,14 @@
+Wire Library
+ - We use the Wire.h library to handle I2C communication between the Arduino and the NTAG I2C Plus.
+
+NTAG I2C Address
+ - The default I2C address of the NXP NTAG I2C Plus is 0x55.
+
+checkConnection(): 
+ - This function verifies if the NTAG I2C module is responding by attempting to communicate with it over I2C.
+
+writeDataToNTAG(): 
+ - This function writes a string to the specified memory page of the NTAG I2C module. NTAG memory pages typically consist of 4 bytes, and we’re writing to 4 consecutive pages (16 bytes).
+
+readDataFromNTAG(): 
+ - This function reads 16 bytes (4 pages) of data starting from a specified memory page.

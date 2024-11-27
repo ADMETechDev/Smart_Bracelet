@@ -1,0 +1,16 @@
+**Explanation**
+
+HardwareSerial: 
+The ESP32 has multiple hardware serial ports, and here HardwareSerial is used to communicate with the u-blox MIA-M10 GPS module on pins 16 (RX) and 17 (TX). Make sure these pins are properly connected to the GPS module's TX and RX pins.
+
+
+**NMEA Sentence Parsing**
+ - The GPS module outputs standard NMEA sentences like $GNGGA (GPS fix data). The code processes these sentences and extracts GPS 
+
+information such as:
+Time (UTC time of position fix)
+Latitude and Longitude (position)
+Fix Quality (whether the GPS fix is valid)
+
+**Serial Monitor Output**
+ Extracted GPS information is printed to the Serial Monitor. You can expand the parsing logic to include more NMEA sentences like $GNRMC, which also contains date and speed information.

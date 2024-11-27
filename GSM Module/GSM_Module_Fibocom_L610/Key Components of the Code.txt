@@ -1,0 +1,56 @@
+***Key Components of the Code***
+
+SoftwareSerial:
+
+gsmSerial(2, 3): A software-based serial port using pin 2 as the RX pin and pin 3 as the TX pin.
+
+gsmSerial.begin(9600): Initializes the software serial communication at 9600 baud (a common rate for GSM modules).
+
+Serial Communication:
+
+Serial.begin(9600): Sets up the hardware serial port (default one) for communication with the computer.
+The main serial port is used to print debug information and interact with the user.
+
+***Code Walkthrough***
+
+1. setup() Function:
+
+Serial and GSM initialization:
+
+Serial.begin(9600): Starts communication between the microcontroller and your computer for debugging and user input/output.
+
+gsmSerial.begin(9600): Starts communication with the GSM module at 9600 baud.
+
+delay(1000): Gives the GSM module some time to power up and initialize before starting communication.
+
+Making a phone call:
+makeCall("1234567890"): Calls the function makeCall() to dial the phone number "1234567890". You should replace this number with the desired one.
+Serial.println("Making a phone call..."): Prints this message to the Serial Monitor as a status update.
+2. loop() Function:
+This function runs continuously after setup(). It handles two things:
+
+Reading data from the GSM module:
+if (gsmSerial.available()): Checks if there's any data available from the GSM module.
+Serial.write(gsmSerial.read()): Reads the data from the GSM module and forwards it to the serial monitor so you can see responses from the GSM module, such as call status or other messages.
+Sending user input to the GSM module:
+if (Serial.available()): Checks if there's any user input available from the serial monitor (your computer).
+gsmSerial.write(Serial.read()): Forwards user input from the serial monitor to the GSM module, allowing you to send AT commands manually if needed.
+3. makeCall() Function:
+This function initiates a phone call by sending AT commands to the GSM module.
+
+gsmSerial.println("AT"): Sends the basic AT command to check if the module is responsive (returns "OK" if successful).
+gsmSerial.print("ATD"): Starts the AT command to dial a number (ATD is the "Dial" command).
+gsmSerial.print(phoneNumber): Adds the provided phone number to the ATD command.
+gsmSerial.println(";"): Finishes the command with a semicolon (;), which is required to tell the GSM module to dial the number.
+delay(1000): Gives the GSM module some time to process the command before moving forward.
+Serial.println("Calling..."): Displays a message in the Serial Monitor to let the user know that a call is being made.
+4. endCall() Function:
+This function sends the ATH command to the GSM module to hang up the current call.
+
+gsmSerial.println("ATH"): Sends the "Hang Up" AT command.
+delay(1000): Waits for the GSM module to process the hang-up command.
+Serial.println("Call ended"): Prints a message to the Serial Monitor indicating that the call has ended.
+Summary:
+The code communicates with the GSM module using AT commands via a software serial interface.
+It dials a phone number using the ATD command, and you can monitor GSM responses and enter custom commands from the serial monitor.
+It has functions to start and end phone calls (makeCall() and endCall()), and continuously monitors incoming data from the GSM module.

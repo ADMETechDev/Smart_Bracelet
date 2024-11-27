@@ -1,0 +1,40 @@
+**Explanation**
+
+I²C Address: 
+ - The default I²C address of the ST25DV is 0x53. You can verify or modify this depending on your specific module.
+I²C Functions: 
+ - We use the Wire.h library for I²C communication to send and receive data from the ST25DV tag.
+Memory Block Access: 
+ - ST25DV's memory is organized in blocks, and you can read/write data block by block. Each block in ST25DV memory typically holds 16 bytes.
+
+
+**Functions**
+
+checkConnection(): 
+ - This function checks if the ST25DV module is connected and responsive.
+writeDataToST25DV(): 
+ - Writes a string of data to a specified memory block. The function pads the data if it’s shorter than 16 bytes.
+readDataFromST25DV(): 
+ - Reads 16 bytes of data from a specified memory block and returns it as a string.
+
+**Wiring**
+
+SDA -> Arduino SDA (A4 on most Arduino boards)
+SCL -> Arduino SCL (A5 on most Arduino boards)
+VCC -> 3.3V
+GND -> GND
+
+
+**Testing**
+
+ - Connect the ST25DV module to the Arduino using the wiring above.
+ - Upload the code to your Arduino.
+ - Open the serial monitor to observe the data being written and read from the ST25DV module.
+
+**Key Points**
+
+Memory Organization: 
+ - You can extend this example to read and write from different memory blocks, change block addresses, or handle more complex features like interrupt configuration.
+
+Data Transmission: 
+ - Modify the data writing/reading function as needed for specific data structures or longer sequences.
